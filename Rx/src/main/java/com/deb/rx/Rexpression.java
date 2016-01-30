@@ -73,14 +73,12 @@ public class Rexpression {
 	 * @methodString - method string it will have method name and parameters.
 	 * @return list containing parameters.
 	 */
-	public String[] getParameters(String methodString) {
-		List<String> parameters = new ArrayList<>();
+	public String[] getParameters(String methodString) {		
 		List<String> filteredList = filter(methodString, "\\(.+,.+\\)");
 
 		String each = filteredList.get(0).replace("(", "");
 		each = each.replace(")", "");
 		
-
 		return each.split(",");
 	}
 
@@ -88,7 +86,7 @@ public class Rexpression {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
