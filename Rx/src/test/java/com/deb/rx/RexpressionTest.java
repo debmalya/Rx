@@ -38,7 +38,7 @@ public class RexpressionTest {
 		Rexpression rpression = new Rexpression();
 
 		List<String> filteredList = rpression.filter(original,
-				"<love>.+</love>");
+				"<love>(.*?)</love>");
 		for (String each : filteredList) {
 			Assert.assertEquals(EXPECTED, each);
 		}
