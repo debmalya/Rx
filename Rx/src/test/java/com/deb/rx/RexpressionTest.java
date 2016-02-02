@@ -30,20 +30,23 @@ public class RexpressionTest {
 
 	/**
 	 * Test method for
-	 * {@link com.deb.rx.Rexpression#fliter(java.lang.String, java.lang.String)}
+	 * {@link com.deb.rx.Rexpression#filter(java.lang.String, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testFliter() {
 		Rexpression rpression = new Rexpression();
 
-		List<String> filteredList = rpression.fliter(original,
+		List<String> filteredList = rpression.filter(original,
 				"<love>.+</love>");
 		for (String each : filteredList) {
 			Assert.assertEquals(EXPECTED, each);
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public final void testAddAttributeToElement() {
 		Rexpression rpression = new Rexpression();
@@ -59,6 +62,18 @@ public class RexpressionTest {
 					attributeMap);
 			Assert.assertEquals(EXPECTED1, actual);
 		}
+	}
+	
+	@Test
+	public void testMethodParameter(){
+		Rexpression rpression = new Rexpression();
+		String testString = "function is_even_sum(a, b)";
+		 String[] values = rpression.getParameters(testString);
+		
+		Assert.assertNotNull(values);
+		Assert.assertEquals(2, values.length);
+		Assert.assertEquals("Expected 'a' but found '" + values[0]+ "'","a",values[0]);
+		Assert.assertEquals("Expected 'b' but found '" + values[1]+ "'","b",values[1].trim());
 	}
 
 }

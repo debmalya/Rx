@@ -16,42 +16,50 @@ import java.util.regex.Pattern;
  *
  */
 public class Rexpression {
-	
-	/**
-    *
-    * @param original String.
-    * @param expression expression to retrieve the desired element from the
-    * original string.
-    * @param attributeMap contains attribute name as key and corresponding
-    * value.
-    * @return original string with added attributes and their value.
-    */
-   public String addAttributeToElement(final String original, final String expression, final Map<String, String> attributeMap) {
-       String replacedString = original;
-       if (attributeMap != null && !attributeMap.isEmpty()) {
-           Set<Map.Entry<String, String>> attributeEntrySet = attributeMap.entrySet();
-           Iterator<Map.Entry<String, String>> attributeSetIterator = attributeEntrySet.iterator();
-           while (attributeSetIterator.hasNext()) {
-               Map.Entry<String, String> nextEntry = attributeSetIterator.next();
-               String value =  expression;
-               if (!value.startsWith("<")){
-            	   value = "<" + value;
-               }
-               replacedString = replacedString.replace(value, value + " " + nextEntry.getKey()+"=\""+nextEntry.getValue()+"\"");
-           }
-       }
-       return replacedString;
-   }
 
-	
-	
+	/**
+	 *
+	 * @param original
+	 *            String.
+	 * @param expression
+	 *            expression to retrieve the desired element from the original
+	 *            string.
+	 * @param attributeMap
+	 *            contains attribute name as key and corresponding value.
+	 * @return original string with added attributes and their value.
+	 */
+	public String addAttributeToElement(final String original,
+			final String expression, final Map<String, String> attributeMap) {
+		String replacedString = original;
+		if (attributeMap != null && !attributeMap.isEmpty()) {
+			Set<Map.Entry<String, String>> attributeEntrySet = attributeMap
+					.entrySet();
+			Iterator<Map.Entry<String, String>> attributeSetIterator = attributeEntrySet
+					.iterator();
+			while (attributeSetIterator.hasNext()) {
+				Map.Entry<String, String> nextEntry = attributeSetIterator
+						.next();
+				String value = expression;
+				if (!value.startsWith("<")) {
+					value = "<" + value;
+				}
+				replacedString = replacedString.replace(value, value + " "
+						+ nextEntry.getKey() + "=\"" + nextEntry.getValue()
+						+ "\"");
+			}
+		}
+		return replacedString;
+	}
+
 	/**
 	 * 
-	 * @param original string
-	 * @param expression filter
+	 * @param original
+	 *            string
+	 * @param expression
+	 *            filter
 	 * @return list of string matching filter.
 	 */
-	public List<String> fliter(String original,String expression) {
+	public List<String> filter(String original, String expression) {
 		List<String> matchingList = new ArrayList<>();
 		Pattern pattern = Pattern.compile(expression);
 		Matcher matcher = pattern.matcher(original);
@@ -62,10 +70,23 @@ public class Rexpression {
 	}
 
 	/**
+	 * @methodString - method string it will have method name and parameters.
+	 * @return list containing parameters.
+	 */
+	public String[] getParameters(String methodString) {		
+		List<String> filteredList = filter(methodString, "\\(.+,.+\\)");
+
+		String each = filteredList.get(0).replace("(", "");
+		each = each.replace(")", "");
+		
+		return each.split(",");
+	}
+
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
