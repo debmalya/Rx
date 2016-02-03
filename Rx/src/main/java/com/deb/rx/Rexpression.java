@@ -73,12 +73,12 @@ public class Rexpression {
 	 * @methodString - method string it will have method name and parameters.
 	 * @return list containing parameters.
 	 */
-	public String[] getParameters(String methodString) {		
+	public String[] getParameters(String methodString) {
 		List<String> filteredList = filter(methodString, "\\(.+,.+\\)");
 
 		String each = filteredList.get(0).replace("(", "");
 		each = each.replace(")", "");
-		
+
 		return each.split(",");
 	}
 
@@ -86,8 +86,21 @@ public class Rexpression {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 
+	}
+
+	/**
+	 * To check whether contains UCS2 character or not.
+	 * @param anyString 
+	 * @return true if contains UCS2 character false otherwise.
+	 */
+	public boolean isUCS2(String anyString) {
+		if (anyString != null && anyString.trim().length() > 0) {
+			double perCharacterByte = (double) anyString.getBytes().length
+					/ anyString.length();
+			return perCharacterByte > 1.00d;
+		}
+		return false;
 	}
 
 }

@@ -75,5 +75,14 @@ public class RexpressionTest {
 		Assert.assertEquals("Expected 'a' but found '" + values[0]+ "'","a",values[0]);
 		Assert.assertEquals("Expected 'b' but found '" + values[1]+ "'","b",values[1].trim());
 	}
+	
+	@Test
+	public void testUCS2(){
+		Rexpression rpression = new Rexpression();
+		Assert.assertFalse(rpression.isUCS2("Regular Expression"));
+		Assert.assertTrue(rpression.isUCS2("ä"));
+		Assert.assertTrue(rpression.isUCS2("আমন"));
+	}
+	
 
 }
