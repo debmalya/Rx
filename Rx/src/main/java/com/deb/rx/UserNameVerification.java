@@ -46,7 +46,7 @@ public class UserNameVerification {
 	 * @return true if valid username false othewise.
 	 */
 	public static boolean validateUserName(String username) {
-		String pattern = "^[a-z0-9_-]{8,50}$";
+		String pattern = "^[a-zA-Z][\\w]{7,29}$";
 		Pattern r = Pattern.compile(pattern);
 		Matcher m = r.matcher(username);
 

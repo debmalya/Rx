@@ -22,6 +22,13 @@ public class UserNameVerificationTest {
 		Assert.assertTrue(UserNameVerification.validateUserName("xahidbuffon"));
 		Assert.assertFalse(UserNameVerification.validateUserName("nagib@007"));
 		Assert.assertFalse(UserNameVerification.validateUserName("123Swakkhar"));
+		Assert.assertFalse(UserNameVerification.validateUserName("raju"));
+		Assert.assertTrue(UserNameVerification.validateUserName("debmalya"));
+		Assert.assertFalse(UserNameVerification.validateUserName("debmalya jash"));
+		Assert.assertFalse(UserNameVerification.validateUserName("abcdefg"));
+		Assert.assertTrue(UserNameVerification.validateUserName("abcdefgh"));
+		Assert.assertFalse(UserNameVerification.validateUserName("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"));
+		
 		
 	}
 
