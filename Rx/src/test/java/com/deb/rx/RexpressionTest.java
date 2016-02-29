@@ -63,26 +63,39 @@ public class RexpressionTest {
 			Assert.assertEquals(EXPECTED1, actual);
 		}
 	}
-	
+
 	@Test
-	public void testMethodParameter(){
+	public void testMethodParameter() {
 		Rexpression rpression = new Rexpression();
 		String testString = "function is_even_sum(a, b)";
-		 String[] values = rpression.getParameters(testString);
-		
+		String[] values = rpression.getParameters(testString);
+
 		Assert.assertNotNull(values);
 		Assert.assertEquals(2, values.length);
-		Assert.assertEquals("Expected 'a' but found '" + values[0]+ "'","a",values[0]);
-		Assert.assertEquals("Expected 'b' but found '" + values[1]+ "'","b",values[1].trim());
+		Assert.assertEquals("Expected 'a' but found '" + values[0] + "'", "a",
+				values[0]);
+		Assert.assertEquals("Expected 'b' but found '" + values[1] + "'", "b",
+				values[1].trim());
 	}
-	
+
 	@Test
-	public void testUCS2(){
+	public void testUCS2() {
 		Rexpression rpression = new Rexpression();
 		Assert.assertFalse(rpression.isUCS2("Regular Expression"));
 		Assert.assertTrue(rpression.isUCS2("ä"));
 		Assert.assertTrue(rpression.isUCS2("আমন"));
 	}
-	
+
+	@Test
+	public void testIsPatternExists() {
+		Assert.assertTrue(Rexpression
+				.isPatternExists(
+						IPAddressValidation.ipAddressValidatorExpression,
+						"192.168.1.1"));
+		Assert.assertFalse(Rexpression
+				.isPatternExists(
+						IPAddressValidation.ipAddressValidatorExpression,
+						"192.168.1,1"));
+	}
 
 }

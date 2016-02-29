@@ -102,5 +102,17 @@ public class Rexpression {
 		}
 		return false;
 	}
+	
+	/**
+	 * Whether pattern exists in the value or not.
+	 * @param expression pattern.
+	 * @param value string to evaluated.
+	 * @return true if pattern exists, false otherwise.
+	 */
+	public static boolean isPatternExists(String expression, String value) {
+		Pattern pattern = Pattern.compile(expression);
+		Matcher matcher = pattern.matcher(value);
+		return matcher.find();
+	}
 
 }
