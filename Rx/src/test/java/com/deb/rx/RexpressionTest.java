@@ -96,6 +96,14 @@ public class RexpressionTest {
 				.isPatternExists(
 						IPAddressValidation.ipAddressValidatorExpression,
 						"192.168.1,1"));
+		Assert.assertFalse(Rexpression
+				.isPatternExists(
+						IPAddressValidation.ipAddressValidatorExpression,
+						"192.168.1.1A"));
+		Assert.assertFalse(Rexpression
+				.isPatternExists(
+						IPAddressValidation.ipAddressValidatorExpression,
+						"a.b.c.d"));
 	}
 
 }
