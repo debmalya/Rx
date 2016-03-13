@@ -105,5 +105,12 @@ public class RexpressionTest {
 						IPAddressValidation.ipAddressValidatorExpression,
 						"a.b.c.d"));
 	}
+	
+	@Test
+	public void testIsValidUserName() {
+		Assert.assertTrue(Rexpression.isPatternExists("^[0-9a-zA-Z_]*$", "debmalya_jash"));
+		Assert.assertTrue(Rexpression.isPatternExists("^[0-9a-zA-Z_]*$", "debmalya_jash007"));
+		Assert.assertFalse(Rexpression.isPatternExists("^[0-9a-zA-Z_]*$", "debmalya_jash007*"));
+	}
 
 }
