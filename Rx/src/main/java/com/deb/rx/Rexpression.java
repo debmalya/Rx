@@ -114,5 +114,15 @@ public class Rexpression {
 		Matcher matcher = pattern.matcher(value);
 		return matcher.find();
 	}
+	
+	/**
+	 * Check for numeric value.
+	 * 
+	 * @param fieldValue
+	 * @return true if it is numeric false otherwise.
+	 */
+	public boolean isValidNumericValue(String fieldValue) {
+		return fieldValue.matches("^[0-9]*$");
+	}
 
 }
